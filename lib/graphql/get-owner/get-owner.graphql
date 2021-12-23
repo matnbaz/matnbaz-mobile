@@ -1,0 +1,39 @@
+query GetOwner(
+  $owner: String!
+  $platform: PlatformType!
+  $reposCount: Int = 12
+  $reposAfter: String
+) {
+  ownerByPlatform(owner: $owner, platform: $platform) {
+    repositories(first: $reposCount, after: $reposAfter) {
+      edges {
+        cursor
+        node {
+           id
+          fullName
+          platformUrl
+          platform
+          descriptionLimited
+          stargazersCount
+          forksCount
+          openIssuesCount
+          language {
+            name
+            color
+          }
+          isNew
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+    id
+    repositoriesCount
+    type
+    login
+    platformId
+    platform
+  }
+}

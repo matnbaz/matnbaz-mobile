@@ -1,0 +1,353 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""The repo type used in filters."""
+enum ArchiveStatusType {
+  """Doesn't apply any filter to the query."""
+  ALL
+
+  """Only returns the archived repositories."""
+  ARCHIVED
+
+  """Only returns the non-archived repositories."""
+  NOT_ARCHIVED
+}
+
+type DateObject {
+  difference(persianNumbers: Boolean = true): String!
+  formatted(format: String = "d MMMM yyyy", persianNumbers: Boolean = true): String!
+  original: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""The repo type used in filters."""
+enum ForkStatusType {
+  """Doesn't apply any filter to the query."""
+  ALL
+
+  """Only returns the forked repositories."""
+  FORK
+
+  """Only returns the source (not forked) repositories."""
+  SOURCE
+}
+
+type Language implements Node {
+  color: String
+  description: String
+  id: ID!
+  name: String!
+  repositories(after: String, before: String, first: Int, last: Int): RepositoryConnection!
+  repositoriesCount: Int!
+  slug: String!
+}
+
+type LanguageConnection {
+  """A list of edges"""
+  edges: [LanguageEdge!]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""A Language edge."""
+type LanguageEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of LanguageEdge."""
+  node: Language!
+}
+
+"""You can order repositories with one of these options."""
+enum LanguageOrder {
+  """Order by repositories count in descending direction."""
+  REPOSITORIES_DESC
+}
+
+type License implements Node {
+  id: ID!
+  key: String!
+  name: String!
+  repositories(after: String, before: String, first: Int, last: Int): RepositoryConnection!
+  repositoriesCount: Int!
+  spdxId: String!
+}
+
+type LicenseConnection {
+  """A list of edges"""
+  edges: [LicenseEdge!]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""A License edge."""
+type LicenseEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of LicenseEdge."""
+  node: License!
+}
+
+"""You can order repositories with one of these options."""
+enum LicenseOrder {
+  """Order by repositories count in descending direction."""
+  REPOSITORIES_DESC
+}
+
+type Mutation {
+  report(id: ID!, reason: String!, subject: ReportableType!): Report!
+  reportOwner(id: ID!, reason: String!): Report! @deprecated(reason: "Use `report` for now")
+  reportRepository(id: ID!, reason: String!): Report! @deprecated(reason: "Use `report` for now")
+  sendSubmission(platform: PlatformType!, username: String!): SubmissionPayload!
+}
+
+interface Node {
+  id: ID!
+}
+
+type Owner implements Node {
+  gravatarId: String!
+  id: ID!
+  login: String!
+  platform: PlatformType!
+  platformId: ID!
+  repositories(after: String, before: String, first: Int, last: Int): RepositoryConnection!
+  repositoriesCount: Int!
+  siteAdmin: Boolean!
+  type: OwnerType!
+}
+
+"""A repository owner could any of these types."""
+enum OwnerType {
+  """Owner is an organization."""
+  Organization
+
+  """Owner is a user."""
+  User
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """The cursor of the last edge in the connection."""
+  endCursor: String
+
+  """Indicates if there are more pages to fetch."""
+  hasNextPage: Boolean!
+
+  """Indicates if there are any pages prior to the current page."""
+  hasPreviousPage: Boolean!
+
+  """The cursor of the first edge in the connection."""
+  startCursor: String
+}
+
+"""A repository owner could any of these types."""
+enum PlatformType {
+  """https://bitbucket.com"""
+  Bitbucket
+
+  """https://github.com"""
+  GitHub
+
+  """https://gitlab.com"""
+  GitLab
+}
+
+type Query {
+  language(slug: String!): Language
+  languages(after: String, before: String, first: Int, last: Int, order: LanguageOrder): LanguageConnection!
+  licenses(after: String, before: String, first: Int, last: Int, order: LicenseOrder): LicenseConnection!
+  owner(id: ID!): Owner
+  ownerByPlatform(owner: String!, platform: PlatformType!): Owner
+  ownerByPlatformId(id: ID!, platform: PlatformType!): Owner
+  repositories(
+    after: String
+    archiveStatus: ArchiveStatusType
+    before: String
+    first: Int
+    forkStatus: ForkStatusType
+
+    """Language slugs"""
+    languages: [String!]
+    last: Int
+
+    """License keys"""
+    licenses: [String!]
+    order: RepoOrder
+    searchTerm: String
+    templateStatus: TemplateStatusType
+  ): RepositoryConnection!
+  repositoryById(id: ID!): Repository
+  repositoryByPlatform(owner: String!, platform: PlatformType!, repo: String!): Repository
+  repositoryByPlatformId(id: ID!, platform: PlatformType!): Repository
+  topic(name: String!): Topic
+  topicById(id: ID!): Topic
+  topics(after: String, before: String, first: Int, last: Int, order: TopicOrder): TopicConnection!
+}
+
+"""You can order repositories with one of these options."""
+enum RepoOrder {
+  """Order by creation date in ascending direction."""
+  CREATED_ASC
+
+  """Order by creation date in descending direction."""
+  CREATED_DESC
+
+  """Order by last push's date in ascending direction."""
+  PUSHED_ASC
+
+  """Order by last push's date in descending direction."""
+  PUSHED_DESC
+
+  """Order by most stars in descending direction."""
+  STARS_DESC
+}
+
+type Report implements Node {
+  id: ID!
+  reason: String!
+  recordUpdatedAt: DateObject!
+  reportableType: ReportableType!
+}
+
+"""A reportable could any of these types."""
+enum ReportableType {
+  """Reportable is an owner."""
+  Owner
+
+  """Reportable is a repository."""
+  Repository
+}
+
+type Repository implements Node {
+  allowForking: Boolean!
+  archived: Boolean!
+  createdAt: DateObject!
+  defaultBranch: String!
+  description: String
+  descriptionDirection: ScriptDirection!
+  descriptionLimited: String
+  disabled: Boolean!
+  forksCount: Int!
+  fullName: String!
+  hasIssues: Boolean!
+  hasPages: Boolean!
+  hasProjects: Boolean!
+  hasWiki: Boolean!
+  homePage: String
+  id: ID!
+  isFork: Boolean!
+  isNew: Boolean!
+  isTemplate: Boolean!
+  language: Language
+  license: License
+  mirrorUrl: String
+  name: String!
+  openIssuesCount: Int!
+  owner: Owner
+  platform: PlatformType!
+  platformId: ID!
+  platformUrl: String
+  pushedAt: DateObject!
+  readme: String
+  readmeHtml: String
+  relatedRepos(after: String, before: String, first: Int, last: Int): RepositoryConnection!
+  size: Int!
+  stargazersCount: Int!
+  topics: [Topic!]!
+  updatedAt: DateObject!
+  watchersCount: Int!
+}
+
+type RepositoryConnection {
+  """A list of edges"""
+  edges: [RepositoryEdge!]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""A Repository edge."""
+type RepositoryEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of RepositoryEdge."""
+  node: Repository!
+}
+
+"""A repository owner could any of these types."""
+enum ScriptDirection {
+  """left-to-right"""
+  LTR
+
+  """right-to-left"""
+  RTL
+}
+
+type Submission implements Node {
+  id: ID!
+  platform: PlatformType!
+  username: String!
+}
+
+type SubmissionPayload {
+  submission: Submission
+  userErrors: [UserError!]
+}
+
+"""The repo type used in filters."""
+enum TemplateStatusType {
+  """Doesn't apply any filter to the query."""
+  ALL
+
+  """Only returns the non-template repositories."""
+  NOT_TEMPLATE
+
+  """Only returns the template repositories."""
+  TEMPLATE
+}
+
+type Topic implements Node {
+  createdAt: DateObject!
+  id: ID!
+  name: String!
+  repositories(after: String, before: String, first: Int, last: Int): RepositoryConnection!
+  repositoriesCount: Int!
+}
+
+type TopicConnection {
+  """A list of edges"""
+  edges: [TopicEdge!]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""A Topic edge."""
+type TopicEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of TopicEdge."""
+  node: Topic!
+}
+
+"""You can order repositories with one of these options."""
+enum TopicOrder {
+  """Order by repositories count in descending direction."""
+  REPOSITORIES_DESC
+}
+
+type UserError {
+  message: String!
+  path: [String!]
+}

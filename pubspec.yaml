@@ -31,8 +31,11 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  graphql_flutter: any
-
+  graphql_flutter: ^5.0.0
+  flutter_spinkit: ^5.1.0
+  json_annotation: ^4.3.0
+  equatable: ^2.0.3
+  gql: ^0.13.1-alpha
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -41,6 +44,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  artemis: '>=7.0.0 <8.0.0'
+  build_runner: ^2.1.4
+  json_serializable: ^6.0.1
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
