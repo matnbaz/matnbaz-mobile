@@ -42,7 +42,7 @@ void main() async {
         ),
         locale: const Locale("fa", "IR"),
         routes: {
-          HomeScreen.routeName: (context) => const HomeScreen(),
+          HomeScreen.routeName: (context) => HomeScreen(),
           OwnerScreen.routeName: (context) => const OwnerScreen(),
           RepositoryScreen.routeName: (context) => const RepositoryScreen(),
         },
