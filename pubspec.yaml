@@ -32,7 +32,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   graphql_flutter: ^5.0.0
-  flutter_spinkit: ^5.1.0
   json_annotation: ^4.3.0
   equatable: ^2.0.3
   gql: ^0.13.1-alpha

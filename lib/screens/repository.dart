@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:matnbaz_mobile/graphql/gql_api.graphql.dart';
 import 'package:matnbaz_mobile/widgets/repository_preview.dart';
@@ -45,7 +44,7 @@ class RepositoryScreen extends StatelessWidget {
             return Scaffold(
                 appBar: AppBar(),
                 body: const Center(
-                    child: SpinKitThreeBounce(color: Colors.blue)));
+                    child: CircularProgressIndicator(color: Colors.blue)));
           }
 
           if (result.data == null) {

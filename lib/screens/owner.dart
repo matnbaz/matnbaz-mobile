@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:matnbaz_mobile/graphql/gql_api.graphql.dart';
 
@@ -40,8 +39,7 @@ class OwnerScreen extends StatelessWidget {
           if (result.isLoading) {
             return Scaffold(
                 appBar: AppBar(),
-                body: const Center(
-                    child: SpinKitThreeBounce(color: Colors.blue)));
+                body: const Center(child: CircularProgressIndicator()));
           }
 
           if (result.data == null) {

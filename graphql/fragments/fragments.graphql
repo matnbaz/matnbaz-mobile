@@ -45,6 +45,7 @@ fragment fullRepo on Repository {
 fragment repoPreviewWithoutOwner on Repository {
   id
   fullName
+  name
   platformUrl
   platform
   descriptionLimited
@@ -68,6 +69,7 @@ fragment repoPreviewWithoutOwner on Repository {
 fragment repoPreview on Repository {
   id
   fullName
+  name
   platformUrl
   platform
   descriptionLimited

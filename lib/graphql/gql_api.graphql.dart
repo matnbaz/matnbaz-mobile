@@ -10,6 +10,7 @@ part 'gql_api.graphql.g.dart';
 mixin RepoPreviewMixin {
   late String id;
   late String fullName;
+  late String name;
   String? platformUrl;
   @JsonKey(unknownEnumValue: PlatformType.artemisUnknown)
   late PlatformType platform;
@@ -26,6 +27,7 @@ mixin RepoPreviewMixin {
 mixin RepoPreviewWithoutOwnerMixin {
   late String id;
   late String fullName;
+  late String name;
   String? platformUrl;
   @JsonKey(unknownEnumValue: PlatformType.artemisUnknown)
   late PlatformType platform;
@@ -257,6 +259,7 @@ class GetRepositories$Query$Repositories$Edges$Node extends JsonSerializable
   List<Object?> get props => [
         id,
         fullName,
+        name,
         platformUrl,
         platform,
         descriptionLimited,
@@ -435,6 +438,7 @@ class GetOwner$Query$OwnerByPlatform$Repositories$Edges$Node
   List<Object?> get props => [
         id,
         fullName,
+        name,
         platformUrl,
         platform,
         descriptionLimited,
@@ -630,6 +634,7 @@ class GetRepository$Query$RepositoryByPlatform$RelatedRepos$Edges$Node
   List<Object?> get props => [
         id,
         fullName,
+        name,
         platformUrl,
         platform,
         descriptionLimited,
@@ -1520,6 +1525,12 @@ final GET_REPOSITORIES_QUERY_DOCUMENT = DocumentNode(definitions: [
             directives: [],
             selectionSet: null),
         FieldNode(
+            name: NameNode(value: 'name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
             name: NameNode(value: 'platformUrl'),
             alias: null,
             arguments: [],
@@ -1848,6 +1859,12 @@ final GET_OWNER_QUERY_DOCUMENT = DocumentNode(definitions: [
             directives: [],
             selectionSet: null),
         FieldNode(
+            name: NameNode(value: 'name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
             name: NameNode(value: 'platformUrl'),
             alias: null,
             arguments: [],
@@ -2103,6 +2120,12 @@ final GET_REPOSITORY_QUERY_DOCUMENT = DocumentNode(definitions: [
             selectionSet: null),
         FieldNode(
             name: NameNode(value: 'fullName'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
+            name: NameNode(value: 'name'),
             alias: null,
             arguments: [],
             directives: [],

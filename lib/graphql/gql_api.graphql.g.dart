@@ -161,6 +161,7 @@ GetRepositories$Query$Repositories$Edges$Node
         GetRepositories$Query$Repositories$Edges$Node()
           ..id = json['id'] as String
           ..fullName = json['fullName'] as String
+          ..name = json['name'] as String
           ..platformUrl = json['platformUrl'] as String?
           ..platform = $enumDecode(_$PlatformTypeEnumMap, json['platform'],
               unknownValue: PlatformType.artemisUnknown)
@@ -186,6 +187,7 @@ Map<String, dynamic> _$GetRepositories$Query$Repositories$Edges$NodeToJson(
     <String, dynamic>{
       'id': instance.id,
       'fullName': instance.fullName,
+      'name': instance.name,
       'platformUrl': instance.platformUrl,
       'platform': _$PlatformTypeEnumMap[instance.platform],
       'descriptionLimited': instance.descriptionLimited,
@@ -332,6 +334,7 @@ GetOwner$Query$OwnerByPlatform$Repositories$Edges$Node
         GetOwner$Query$OwnerByPlatform$Repositories$Edges$Node()
           ..id = json['id'] as String
           ..fullName = json['fullName'] as String
+          ..name = json['name'] as String
           ..platformUrl = json['platformUrl'] as String?
           ..platform = $enumDecode(_$PlatformTypeEnumMap, json['platform'],
               unknownValue: PlatformType.artemisUnknown)
@@ -354,6 +357,7 @@ Map<String, dynamic>
         <String, dynamic>{
           'id': instance.id,
           'fullName': instance.fullName,
+          'name': instance.name,
           'platformUrl': instance.platformUrl,
           'platform': _$PlatformTypeEnumMap[instance.platform],
           'descriptionLimited': instance.descriptionLimited,
@@ -507,6 +511,7 @@ GetRepository$Query$RepositoryByPlatform$RelatedRepos$Edges$Node
         GetRepository$Query$RepositoryByPlatform$RelatedRepos$Edges$Node()
           ..id = json['id'] as String
           ..fullName = json['fullName'] as String
+          ..name = json['name'] as String
           ..platformUrl = json['platformUrl'] as String?
           ..platform = $enumDecode(_$PlatformTypeEnumMap, json['platform'],
               unknownValue: PlatformType.artemisUnknown)
@@ -534,6 +539,7 @@ Map<String, dynamic>
         <String, dynamic>{
           'id': instance.id,
           'fullName': instance.fullName,
+          'name': instance.name,
           'platformUrl': instance.platformUrl,
           'platform': _$PlatformTypeEnumMap[instance.platform],
           'descriptionLimited': instance.descriptionLimited,
