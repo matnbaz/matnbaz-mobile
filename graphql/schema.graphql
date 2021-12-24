@@ -17,7 +17,7 @@ enum ArchiveStatusType {
 type DateObject {
   difference(persianNumbers: Boolean = true): String!
   formatted(format: String = "d MMMM yyyy", persianNumbers: Boolean = true): String!
-  original: DateTime!
+  original: String!
 }
 
 """

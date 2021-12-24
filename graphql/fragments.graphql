@@ -1,0 +1,73 @@
+fragment fullRepo on Repository {
+  id
+  fullName
+  name
+  platformUrl
+  platform
+  descriptionLimited
+  archived
+  isTemplate
+  defaultBranch
+  pushedAt {
+    difference(persianNumbers: true)
+  }
+  createdAt {
+    formatted(persianNumbers: true)
+  }
+  homePage
+  stargazersCount
+  forksCount
+  openIssuesCount
+  readmeHtml
+  language {
+    name
+    color
+  }
+  license {
+    name
+    key
+    spdxId
+  }
+  owner {
+    type
+    login
+    platformId
+  }
+}
+
+fragment repoPreviewWithoutOwner on Repository {
+  id
+  fullName
+  platformUrl
+  platform
+  descriptionLimited
+  stargazersCount
+  forksCount
+  openIssuesCount
+  language {
+    name
+    color
+  }
+  isNew
+}
+
+fragment repoPreview on Repository {
+  id
+  fullName
+  platformUrl
+  platform
+  descriptionLimited
+  stargazersCount
+  forksCount
+  openIssuesCount
+  language {
+    name
+    color
+  }
+  isNew
+  owner {
+    type
+    login
+    platformId
+  }
+}
