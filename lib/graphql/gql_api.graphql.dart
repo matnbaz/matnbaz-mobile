@@ -14,6 +14,8 @@ mixin RepoPreviewMixin {
   @JsonKey(unknownEnumValue: PlatformType.artemisUnknown)
   late PlatformType platform;
   String? descriptionLimited;
+  @JsonKey(unknownEnumValue: ScriptDirection.artemisUnknown)
+  late ScriptDirection descriptionDirection;
   late int stargazersCount;
   late int forksCount;
   late int openIssuesCount;
@@ -28,6 +30,8 @@ mixin RepoPreviewWithoutOwnerMixin {
   @JsonKey(unknownEnumValue: PlatformType.artemisUnknown)
   late PlatformType platform;
   String? descriptionLimited;
+  @JsonKey(unknownEnumValue: ScriptDirection.artemisUnknown)
+  late ScriptDirection descriptionDirection;
   late int stargazersCount;
   late int forksCount;
   late int openIssuesCount;
@@ -42,6 +46,8 @@ mixin FullRepoMixin {
   @JsonKey(unknownEnumValue: PlatformType.artemisUnknown)
   late PlatformType platform;
   String? descriptionLimited;
+  @JsonKey(unknownEnumValue: ScriptDirection.artemisUnknown)
+  late ScriptDirection descriptionDirection;
   late bool archived;
   late bool isTemplate;
   late String defaultBranch;
@@ -254,6 +260,7 @@ class GetRepositories$Query$Repositories$Edges$Node extends JsonSerializable
         platformUrl,
         platform,
         descriptionLimited,
+        descriptionDirection,
         stargazersCount,
         forksCount,
         openIssuesCount,
@@ -340,6 +347,45 @@ class GetRepositories$Query extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class RepoPreviewMixin$Language$Color$Rgba extends JsonSerializable
+    with EquatableMixin {
+  RepoPreviewMixin$Language$Color$Rgba();
+
+  factory RepoPreviewMixin$Language$Color$Rgba.fromJson(
+          Map<String, dynamic> json) =>
+      _$RepoPreviewMixin$Language$Color$RgbaFromJson(json);
+
+  late int red;
+
+  late int green;
+
+  late int blue;
+
+  @override
+  List<Object?> get props => [red, green, blue];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$RepoPreviewMixin$Language$Color$RgbaToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class RepoPreviewMixin$Language$Color extends JsonSerializable
+    with EquatableMixin {
+  RepoPreviewMixin$Language$Color();
+
+  factory RepoPreviewMixin$Language$Color.fromJson(Map<String, dynamic> json) =>
+      _$RepoPreviewMixin$Language$ColorFromJson(json);
+
+  late RepoPreviewMixin$Language$Color$Rgba rgba;
+
+  @override
+  List<Object?> get props => [rgba];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$RepoPreviewMixin$Language$ColorToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class RepoPreviewMixin$Language extends JsonSerializable with EquatableMixin {
   RepoPreviewMixin$Language();
 
@@ -348,7 +394,7 @@ class RepoPreviewMixin$Language extends JsonSerializable with EquatableMixin {
 
   late String name;
 
-  String? color;
+  RepoPreviewMixin$Language$Color? color;
 
   @override
   List<Object?> get props => [name, color];
@@ -392,6 +438,7 @@ class GetOwner$Query$OwnerByPlatform$Repositories$Edges$Node
         platformUrl,
         platform,
         descriptionLimited,
+        descriptionDirection,
         stargazersCount,
         forksCount,
         openIssuesCount,
@@ -510,6 +557,46 @@ class GetOwner$Query extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class RepoPreviewWithoutOwnerMixin$Language$Color$Rgba extends JsonSerializable
+    with EquatableMixin {
+  RepoPreviewWithoutOwnerMixin$Language$Color$Rgba();
+
+  factory RepoPreviewWithoutOwnerMixin$Language$Color$Rgba.fromJson(
+          Map<String, dynamic> json) =>
+      _$RepoPreviewWithoutOwnerMixin$Language$Color$RgbaFromJson(json);
+
+  late int red;
+
+  late int green;
+
+  late int blue;
+
+  @override
+  List<Object?> get props => [red, green, blue];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$RepoPreviewWithoutOwnerMixin$Language$Color$RgbaToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class RepoPreviewWithoutOwnerMixin$Language$Color extends JsonSerializable
+    with EquatableMixin {
+  RepoPreviewWithoutOwnerMixin$Language$Color();
+
+  factory RepoPreviewWithoutOwnerMixin$Language$Color.fromJson(
+          Map<String, dynamic> json) =>
+      _$RepoPreviewWithoutOwnerMixin$Language$ColorFromJson(json);
+
+  late RepoPreviewWithoutOwnerMixin$Language$Color$Rgba rgba;
+
+  @override
+  List<Object?> get props => [rgba];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$RepoPreviewWithoutOwnerMixin$Language$ColorToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class RepoPreviewWithoutOwnerMixin$Language extends JsonSerializable
     with EquatableMixin {
   RepoPreviewWithoutOwnerMixin$Language();
@@ -520,7 +607,7 @@ class RepoPreviewWithoutOwnerMixin$Language extends JsonSerializable
 
   late String name;
 
-  String? color;
+  RepoPreviewWithoutOwnerMixin$Language$Color? color;
 
   @override
   List<Object?> get props => [name, color];
@@ -546,6 +633,7 @@ class GetRepository$Query$RepositoryByPlatform$RelatedRepos$Edges$Node
         platformUrl,
         platform,
         descriptionLimited,
+        descriptionDirection,
         stargazersCount,
         forksCount,
         openIssuesCount,
@@ -639,6 +727,7 @@ class GetRepository$Query$RepositoryByPlatform extends JsonSerializable
         platformUrl,
         platform,
         descriptionLimited,
+        descriptionDirection,
         archived,
         isTemplate,
         defaultBranch,
@@ -705,6 +794,44 @@ class FullRepoMixin$CreatedAt extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class FullRepoMixin$Language$Color$Rgba extends JsonSerializable
+    with EquatableMixin {
+  FullRepoMixin$Language$Color$Rgba();
+
+  factory FullRepoMixin$Language$Color$Rgba.fromJson(
+          Map<String, dynamic> json) =>
+      _$FullRepoMixin$Language$Color$RgbaFromJson(json);
+
+  late int red;
+
+  late int green;
+
+  late int blue;
+
+  @override
+  List<Object?> get props => [red, green, blue];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$FullRepoMixin$Language$Color$RgbaToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class FullRepoMixin$Language$Color extends JsonSerializable
+    with EquatableMixin {
+  FullRepoMixin$Language$Color();
+
+  factory FullRepoMixin$Language$Color.fromJson(Map<String, dynamic> json) =>
+      _$FullRepoMixin$Language$ColorFromJson(json);
+
+  late FullRepoMixin$Language$Color$Rgba rgba;
+
+  @override
+  List<Object?> get props => [rgba];
+  @override
+  Map<String, dynamic> toJson() => _$FullRepoMixin$Language$ColorToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class FullRepoMixin$Language extends JsonSerializable with EquatableMixin {
   FullRepoMixin$Language();
 
@@ -713,7 +840,7 @@ class FullRepoMixin$Language extends JsonSerializable with EquatableMixin {
 
   late String name;
 
-  String? color;
+  FullRepoMixin$Language$Color? color;
 
   @override
   List<Object?> get props => [name, color];
@@ -848,6 +975,14 @@ enum PlatformType {
   gitHub,
   @JsonValue('GitLab')
   gitLab,
+  @JsonValue('ARTEMIS_UNKNOWN')
+  artemisUnknown,
+}
+enum ScriptDirection {
+  @JsonValue('LTR')
+  ltr,
+  @JsonValue('RTL')
+  rtl,
   @JsonValue('ARTEMIS_UNKNOWN')
   artemisUnknown,
 }
@@ -1403,6 +1538,12 @@ final GET_REPOSITORIES_QUERY_DOCUMENT = DocumentNode(definitions: [
             directives: [],
             selectionSet: null),
         FieldNode(
+            name: NameNode(value: 'descriptionDirection'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
             name: NameNode(value: 'stargazersCount'),
             alias: null,
             arguments: [],
@@ -1437,7 +1578,33 @@ final GET_REPOSITORIES_QUERY_DOCUMENT = DocumentNode(definitions: [
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null)
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'rgba'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'red'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'green'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'blue'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ]))
+                  ]))
             ])),
         FieldNode(
             name: NameNode(value: 'isNew'),
@@ -1699,6 +1866,12 @@ final GET_OWNER_QUERY_DOCUMENT = DocumentNode(definitions: [
             directives: [],
             selectionSet: null),
         FieldNode(
+            name: NameNode(value: 'descriptionDirection'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
             name: NameNode(value: 'stargazersCount'),
             alias: null,
             arguments: [],
@@ -1733,7 +1906,33 @@ final GET_OWNER_QUERY_DOCUMENT = DocumentNode(definitions: [
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null)
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'rgba'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'red'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'green'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'blue'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ]))
+                  ]))
             ])),
         FieldNode(
             name: NameNode(value: 'isNew'),
@@ -1927,6 +2126,12 @@ final GET_REPOSITORY_QUERY_DOCUMENT = DocumentNode(definitions: [
             directives: [],
             selectionSet: null),
         FieldNode(
+            name: NameNode(value: 'descriptionDirection'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
             name: NameNode(value: 'stargazersCount'),
             alias: null,
             arguments: [],
@@ -1961,7 +2166,33 @@ final GET_REPOSITORY_QUERY_DOCUMENT = DocumentNode(definitions: [
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null)
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'rgba'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'red'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'green'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'blue'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ]))
+                  ]))
             ])),
         FieldNode(
             name: NameNode(value: 'isNew'),
@@ -2034,6 +2265,12 @@ final GET_REPOSITORY_QUERY_DOCUMENT = DocumentNode(definitions: [
             selectionSet: null),
         FieldNode(
             name: NameNode(value: 'descriptionLimited'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
+            name: NameNode(value: 'descriptionDirection'),
             alias: null,
             arguments: [],
             directives: [],
@@ -2137,7 +2374,33 @@ final GET_REPOSITORY_QUERY_DOCUMENT = DocumentNode(definitions: [
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null)
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'rgba'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'red'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'green'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'blue'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ]))
+                  ]))
             ])),
         FieldNode(
             name: NameNode(value: 'license'),

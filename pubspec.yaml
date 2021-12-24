@@ -118,4 +118,7 @@ flutter:
           weight: 300
         - asset: fonts/Vazir-Thin.ttf
           weight: 100
-  
+    - family:  MatnbazCustomIcons
+      fonts:
+      - asset: fonts/MatnbazCustomIcons.ttf
+

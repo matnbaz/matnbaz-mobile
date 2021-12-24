@@ -165,6 +165,9 @@ GetRepositories$Query$Repositories$Edges$Node
           ..platform = $enumDecode(_$PlatformTypeEnumMap, json['platform'],
               unknownValue: PlatformType.artemisUnknown)
           ..descriptionLimited = json['descriptionLimited'] as String?
+          ..descriptionDirection = $enumDecode(
+              _$ScriptDirectionEnumMap, json['descriptionDirection'],
+              unknownValue: ScriptDirection.artemisUnknown)
           ..stargazersCount = json['stargazersCount'] as int
           ..forksCount = json['forksCount'] as int
           ..openIssuesCount = json['openIssuesCount'] as int
@@ -186,6 +189,8 @@ Map<String, dynamic> _$GetRepositories$Query$Repositories$Edges$NodeToJson(
       'platformUrl': instance.platformUrl,
       'platform': _$PlatformTypeEnumMap[instance.platform],
       'descriptionLimited': instance.descriptionLimited,
+      'descriptionDirection':
+          _$ScriptDirectionEnumMap[instance.descriptionDirection],
       'stargazersCount': instance.stargazersCount,
       'forksCount': instance.forksCount,
       'openIssuesCount': instance.openIssuesCount,
@@ -193,6 +198,12 @@ Map<String, dynamic> _$GetRepositories$Query$Repositories$Edges$NodeToJson(
       'isNew': instance.isNew,
       'owner': instance.owner?.toJson(),
     };
+
+const _$ScriptDirectionEnumMap = {
+  ScriptDirection.ltr: 'LTR',
+  ScriptDirection.rtl: 'RTL',
+  ScriptDirection.artemisUnknown: 'ARTEMIS_UNKNOWN',
+};
 
 GetRepositories$Query$Repositories$Edges
     _$GetRepositories$Query$Repositories$EdgesFromJson(
@@ -250,17 +261,47 @@ Map<String, dynamic> _$GetRepositories$QueryToJson(
       'repositories': instance.repositories.toJson(),
     };
 
+RepoPreviewMixin$Language$Color$Rgba
+    _$RepoPreviewMixin$Language$Color$RgbaFromJson(Map<String, dynamic> json) =>
+        RepoPreviewMixin$Language$Color$Rgba()
+          ..red = json['red'] as int
+          ..green = json['green'] as int
+          ..blue = json['blue'] as int;
+
+Map<String, dynamic> _$RepoPreviewMixin$Language$Color$RgbaToJson(
+        RepoPreviewMixin$Language$Color$Rgba instance) =>
+    <String, dynamic>{
+      'red': instance.red,
+      'green': instance.green,
+      'blue': instance.blue,
+    };
+
+RepoPreviewMixin$Language$Color _$RepoPreviewMixin$Language$ColorFromJson(
+        Map<String, dynamic> json) =>
+    RepoPreviewMixin$Language$Color()
+      ..rgba = RepoPreviewMixin$Language$Color$Rgba.fromJson(
+          json['rgba'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$RepoPreviewMixin$Language$ColorToJson(
+        RepoPreviewMixin$Language$Color instance) =>
+    <String, dynamic>{
+      'rgba': instance.rgba.toJson(),
+    };
+
 RepoPreviewMixin$Language _$RepoPreviewMixin$LanguageFromJson(
         Map<String, dynamic> json) =>
     RepoPreviewMixin$Language()
       ..name = json['name'] as String
-      ..color = json['color'] as String?;
+      ..color = json['color'] == null
+          ? null
+          : RepoPreviewMixin$Language$Color.fromJson(
+              json['color'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$RepoPreviewMixin$LanguageToJson(
         RepoPreviewMixin$Language instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'color': instance.color,
+      'color': instance.color?.toJson(),
     };
 
 RepoPreviewMixin$Owner _$RepoPreviewMixin$OwnerFromJson(
@@ -295,6 +336,9 @@ GetOwner$Query$OwnerByPlatform$Repositories$Edges$Node
           ..platform = $enumDecode(_$PlatformTypeEnumMap, json['platform'],
               unknownValue: PlatformType.artemisUnknown)
           ..descriptionLimited = json['descriptionLimited'] as String?
+          ..descriptionDirection = $enumDecode(
+              _$ScriptDirectionEnumMap, json['descriptionDirection'],
+              unknownValue: ScriptDirection.artemisUnknown)
           ..stargazersCount = json['stargazersCount'] as int
           ..forksCount = json['forksCount'] as int
           ..openIssuesCount = json['openIssuesCount'] as int
@@ -313,6 +357,8 @@ Map<String, dynamic>
           'platformUrl': instance.platformUrl,
           'platform': _$PlatformTypeEnumMap[instance.platform],
           'descriptionLimited': instance.descriptionLimited,
+          'descriptionDirection':
+              _$ScriptDirectionEnumMap[instance.descriptionDirection],
           'stargazersCount': instance.stargazersCount,
           'forksCount': instance.forksCount,
           'openIssuesCount': instance.openIssuesCount,
@@ -409,18 +455,50 @@ Map<String, dynamic> _$GetOwner$QueryToJson(GetOwner$Query instance) =>
       'ownerByPlatform': instance.ownerByPlatform?.toJson(),
     };
 
+RepoPreviewWithoutOwnerMixin$Language$Color$Rgba
+    _$RepoPreviewWithoutOwnerMixin$Language$Color$RgbaFromJson(
+            Map<String, dynamic> json) =>
+        RepoPreviewWithoutOwnerMixin$Language$Color$Rgba()
+          ..red = json['red'] as int
+          ..green = json['green'] as int
+          ..blue = json['blue'] as int;
+
+Map<String, dynamic> _$RepoPreviewWithoutOwnerMixin$Language$Color$RgbaToJson(
+        RepoPreviewWithoutOwnerMixin$Language$Color$Rgba instance) =>
+    <String, dynamic>{
+      'red': instance.red,
+      'green': instance.green,
+      'blue': instance.blue,
+    };
+
+RepoPreviewWithoutOwnerMixin$Language$Color
+    _$RepoPreviewWithoutOwnerMixin$Language$ColorFromJson(
+            Map<String, dynamic> json) =>
+        RepoPreviewWithoutOwnerMixin$Language$Color()
+          ..rgba = RepoPreviewWithoutOwnerMixin$Language$Color$Rgba.fromJson(
+              json['rgba'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$RepoPreviewWithoutOwnerMixin$Language$ColorToJson(
+        RepoPreviewWithoutOwnerMixin$Language$Color instance) =>
+    <String, dynamic>{
+      'rgba': instance.rgba.toJson(),
+    };
+
 RepoPreviewWithoutOwnerMixin$Language
     _$RepoPreviewWithoutOwnerMixin$LanguageFromJson(
             Map<String, dynamic> json) =>
         RepoPreviewWithoutOwnerMixin$Language()
           ..name = json['name'] as String
-          ..color = json['color'] as String?;
+          ..color = json['color'] == null
+              ? null
+              : RepoPreviewWithoutOwnerMixin$Language$Color.fromJson(
+                  json['color'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$RepoPreviewWithoutOwnerMixin$LanguageToJson(
         RepoPreviewWithoutOwnerMixin$Language instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'color': instance.color,
+      'color': instance.color?.toJson(),
     };
 
 GetRepository$Query$RepositoryByPlatform$RelatedRepos$Edges$Node
@@ -433,6 +511,9 @@ GetRepository$Query$RepositoryByPlatform$RelatedRepos$Edges$Node
           ..platform = $enumDecode(_$PlatformTypeEnumMap, json['platform'],
               unknownValue: PlatformType.artemisUnknown)
           ..descriptionLimited = json['descriptionLimited'] as String?
+          ..descriptionDirection = $enumDecode(
+              _$ScriptDirectionEnumMap, json['descriptionDirection'],
+              unknownValue: ScriptDirection.artemisUnknown)
           ..stargazersCount = json['stargazersCount'] as int
           ..forksCount = json['forksCount'] as int
           ..openIssuesCount = json['openIssuesCount'] as int
@@ -456,6 +537,8 @@ Map<String, dynamic>
           'platformUrl': instance.platformUrl,
           'platform': _$PlatformTypeEnumMap[instance.platform],
           'descriptionLimited': instance.descriptionLimited,
+          'descriptionDirection':
+              _$ScriptDirectionEnumMap[instance.descriptionDirection],
           'stargazersCount': instance.stargazersCount,
           'forksCount': instance.forksCount,
           'openIssuesCount': instance.openIssuesCount,
@@ -528,6 +611,9 @@ GetRepository$Query$RepositoryByPlatform
           ..platform = $enumDecode(_$PlatformTypeEnumMap, json['platform'],
               unknownValue: PlatformType.artemisUnknown)
           ..descriptionLimited = json['descriptionLimited'] as String?
+          ..descriptionDirection = $enumDecode(
+              _$ScriptDirectionEnumMap, json['descriptionDirection'],
+              unknownValue: ScriptDirection.artemisUnknown)
           ..archived = json['archived'] as bool
           ..isTemplate = json['isTemplate'] as bool
           ..defaultBranch = json['defaultBranch'] as String
@@ -565,6 +651,8 @@ Map<String, dynamic> _$GetRepository$Query$RepositoryByPlatformToJson(
       'platformUrl': instance.platformUrl,
       'platform': _$PlatformTypeEnumMap[instance.platform],
       'descriptionLimited': instance.descriptionLimited,
+      'descriptionDirection':
+          _$ScriptDirectionEnumMap[instance.descriptionDirection],
       'archived': instance.archived,
       'isTemplate': instance.isTemplate,
       'defaultBranch': instance.defaultBranch,
@@ -614,17 +702,47 @@ Map<String, dynamic> _$FullRepoMixin$CreatedAtToJson(
       'formatted': instance.formatted,
     };
 
+FullRepoMixin$Language$Color$Rgba _$FullRepoMixin$Language$Color$RgbaFromJson(
+        Map<String, dynamic> json) =>
+    FullRepoMixin$Language$Color$Rgba()
+      ..red = json['red'] as int
+      ..green = json['green'] as int
+      ..blue = json['blue'] as int;
+
+Map<String, dynamic> _$FullRepoMixin$Language$Color$RgbaToJson(
+        FullRepoMixin$Language$Color$Rgba instance) =>
+    <String, dynamic>{
+      'red': instance.red,
+      'green': instance.green,
+      'blue': instance.blue,
+    };
+
+FullRepoMixin$Language$Color _$FullRepoMixin$Language$ColorFromJson(
+        Map<String, dynamic> json) =>
+    FullRepoMixin$Language$Color()
+      ..rgba = FullRepoMixin$Language$Color$Rgba.fromJson(
+          json['rgba'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$FullRepoMixin$Language$ColorToJson(
+        FullRepoMixin$Language$Color instance) =>
+    <String, dynamic>{
+      'rgba': instance.rgba.toJson(),
+    };
+
 FullRepoMixin$Language _$FullRepoMixin$LanguageFromJson(
         Map<String, dynamic> json) =>
     FullRepoMixin$Language()
       ..name = json['name'] as String
-      ..color = json['color'] as String?;
+      ..color = json['color'] == null
+          ? null
+          : FullRepoMixin$Language$Color.fromJson(
+              json['color'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$FullRepoMixin$LanguageToJson(
         FullRepoMixin$Language instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'color': instance.color,
+      'color': instance.color?.toJson(),
     };
 
 FullRepoMixin$License _$FullRepoMixin$LicenseFromJson(

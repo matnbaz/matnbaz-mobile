@@ -5,6 +5,7 @@ fragment fullRepo on Repository {
   platformUrl
   platform
   descriptionLimited
+  descriptionDirection
   archived
   isTemplate
   defaultBranch
@@ -21,7 +22,13 @@ fragment fullRepo on Repository {
   readmeHtml
   language {
     name
-    color
+    color {
+      rgba {
+        red
+        green
+        blue
+      }
+    }
   }
   license {
     name
@@ -41,12 +48,19 @@ fragment repoPreviewWithoutOwner on Repository {
   platformUrl
   platform
   descriptionLimited
+  descriptionDirection
   stargazersCount
   forksCount
   openIssuesCount
   language {
     name
-    color
+    color {
+      rgba {
+        red
+        green
+        blue
+      }
+    }
   }
   isNew
 }
@@ -57,12 +71,19 @@ fragment repoPreview on Repository {
   platformUrl
   platform
   descriptionLimited
+  descriptionDirection
   stargazersCount
   forksCount
   openIssuesCount
   language {
     name
-    color
+    color {
+      rgba {
+        red
+        green
+        blue
+      }
+    }
   }
   isNew
   owner {

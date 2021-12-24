@@ -14,10 +14,15 @@ enum ArchiveStatusType {
   NOT_ARCHIVED
 }
 
+type Color {
+  hexString: String!
+  rgba: RGBA!
+}
+
 type DateObject {
   difference(persianNumbers: Boolean = true): String!
   formatted(format: String = "d MMMM yyyy", persianNumbers: Boolean = true): String!
-  original: String!
+  original: DateTime!
 }
 
 """
@@ -38,7 +43,7 @@ enum ForkStatusType {
 }
 
 type Language implements Node {
-  color: String
+  color: Color
   description: String
   id: ID!
   name: String!
@@ -191,6 +196,13 @@ type Query {
   topic(name: String!): Topic
   topicById(id: ID!): Topic
   topics(after: String, before: String, first: Int, last: Int, order: TopicOrder): TopicConnection!
+}
+
+type RGBA {
+  alpha: Float!
+  blue: Int!
+  green: Int!
+  red: Int!
 }
 
 """You can order repositories with one of these options."""

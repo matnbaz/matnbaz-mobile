@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:matnbaz_mobile/graphql/gql_api.graphql.dart';
+import 'package:matnbaz_mobile/widgets/repository_preview.dart';
 
 class RepositoryScreenArguments {
   final String repo;
@@ -54,7 +55,7 @@ class RepositoryScreen extends StatelessWidget {
               ),
             );
           }
-          print(result.data);
+
           final repo =
               GetRepository$Query.fromJson(result.data!).repositoryByPlatform;
           if (repo == null) {
@@ -72,25 +73,26 @@ class RepositoryScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: NetworkImage(
-                            'https://avatars.githubusercontent.com/u/${repo.owner?.platformId}?v=4',
-                          ),
-                          radius: 50,
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          repo.fullName,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 32),
-                        )
-                      ],
-                    ),
-                    Text((repo.stargazersCount.toString()) + " Stars"),
+                    // Row(
+                    //   children: [
+                    //     CircleAvatar(
+                    //       backgroundImage: NetworkImage(
+                    //         'https://avatars.githubusercontent.com/u/${repo.owner?.platformId}?v=4',
+                    //       ),
+                    //       radius: 50,
+                    //     ),
+                    //     const SizedBox(
+                    //       width: 20,
+                    //     ),
+                    //     Text(
+                    //       repo.fullName,
+                    //       style: const TextStyle(
+                    //           fontWeight: FontWeight.bold, fontSize: 32),
+                    //     )
+                    //   ],
+                    // ),
+                    // Text((repo.stargazersCount.toString()) + " Stars"),
+                    RepositoryPreview(repository: repo)
                   ],
                 )),
           );
