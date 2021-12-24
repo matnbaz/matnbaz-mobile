@@ -28,7 +28,7 @@ packages:
       name: artemis
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.2.3-beta"
+    version: "7.3.0-beta"
   async:
     dependency: transitive
     description:
@@ -315,20 +315,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.13.1-alpha+1635885531641"
-  gql_code_builder2:
+  gql_code_builder:
     dependency: transitive
     description:
-      name: gql_code_builder2
+      name: gql_code_builder
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.3.0-alpha+1635885531709"
   gql_dedupe_link:
     dependency: transitive
     description:
       name: gql_dedupe_link
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.2-alpha+1635885531760"
   gql_error_link:
     dependency: transitive
     description:
@@ -337,21 +337,21 @@ packages:
     source: hosted
     version: "0.2.0"
   gql_exec:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: gql_exec
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0"
   gql_http_link:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: gql_http_link
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.0"
   gql_link:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: gql_link
       url: "https://pub.dartlang.org"
@@ -524,7 +524,7 @@ packages:
       name: path_provider_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.10"
+    version: "2.0.11"
   path_provider_ios:
     dependency: transitive
     description:

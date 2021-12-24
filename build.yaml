@@ -6,9 +6,9 @@ targets:
     builders:
       artemis:
         options:
-          fragments_glob: graphql/fragments.graphql
           schema_mapping:
             - output: lib/graphql/gql_api.graphql.dart
-              schema: graphql/schema.graphql
-              queries_glob: graphql/gql/**.graphql
               naming_scheme: pathedWithFields
+              schema: graphql/schema.graphql
+              fragments_glob: graphql/fragments/**.graphql
+              queries_glob: graphql/{queries,mutations}/**.graphql

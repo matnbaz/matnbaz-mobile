@@ -3,18 +3,32 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:matnbaz_mobile/graphql/gql_api.graphql.dart';
 
+class OwnerScreenArguments {
+  final String owner;
+  final PlatformType platformType;
+
+  OwnerScreenArguments({required this.owner, required this.platformType});
+}
+
 class OwnerScreen extends StatelessWidget {
   const OwnerScreen({Key? key}) : super(key: key);
 
+  static String routeName = "/owner";
+
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context)?.settings.arguments as OwnerScreenArguments;
+
     return Query(
         options: QueryOptions(
-            document: GetOwnerQuery(
-                    variables: GetOwnerArguments(
-                        owner: 'alitnk', platform: PlatformType.gitHub))
-                .document,
-            variables: {'owner': "alitnk", "platform": "GitHub"}),
+            fetchPolicy: FetchPolicy.noCache,
+            document: GET_OWNER_QUERY_DOCUMENT,
+            variables: GetOwnerArguments(
+                    owner: args.owner,
+                    platform: args.platformType,
+                    reposCount: 5)
+                .toJson()),
         builder: (QueryResult result,
             {VoidCallback? refetch, FetchMore? fetchMore}) {
           if (result.hasException) {
@@ -30,10 +44,22 @@ class OwnerScreen extends StatelessWidget {
                     child: SpinKitThreeBounce(color: Colors.blue)));
           }
 
-          final owner =
-              GetOwner$Query.fromJson(result.data ?? {}).ownerByPlatform;
-          if (owner == null) return const Text("what");
+          if (result.data == null) {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text("پیدا نشد"),
+              ),
+            );
+          }
 
+          final owner = GetOwner$Query.fromJson(result.data!).ownerByPlatform;
+          if (owner == null) {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text("پیدا نشد"),
+              ),
+            );
+          }
           return Scaffold(
             appBar: AppBar(
               title: Text(owner.login),

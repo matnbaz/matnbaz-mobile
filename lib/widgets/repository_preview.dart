@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 
 class RepositoryPreview extends StatefulWidget {
+  const RepositoryPreview({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _RepositoryPreview();
 }
@@ -8,6 +10,6 @@ class RepositoryPreview extends StatefulWidget {
 class _RepositoryPreview extends State<RepositoryPreview> {
   @override
   Widget build(BuildContext context) {
-    return Text('not implemented yet');
+    return const Text('not implemented yet');
   }
 }

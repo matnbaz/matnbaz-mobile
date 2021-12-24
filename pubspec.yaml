@@ -41,6 +41,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+# Temporary:
+dependency_overrides:
+  gql_exec: 0.3.0
+  gql_link: 0.4.0
+  gql_http_link: 0.4.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
