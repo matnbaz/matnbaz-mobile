@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:matnbaz_mobile/graphql/gql_api.graphql.dart';
 import 'package:matnbaz_mobile/widgets/repository_preview.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
-  final ScrollController _scrollController = ScrollController();
-
   static String routeName = "/";
+
+  final int _perPage = 12;
+
+  final RefreshController _refreshController = RefreshController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,7 @@ class HomeScreen extends StatelessWidget {
             document: GET_REPOSITORIES_QUERY_DOCUMENT,
             fetchPolicy: FetchPolicy.noCache,
             variables: GetRepositoriesArguments(
-              first: 10,
+              first: _perPage,
             ).toJson()),
         builder: (result, {fetchMore, refetch}) {
           final repos = result.data == null
@@ -25,66 +28,67 @@ class HomeScreen extends StatelessWidget {
               : GetRepositories$Query.fromJson(result.data!).repositories.edges;
 
           return Scaffold(
-              appBar: AppBar(
-                title: const Text("متن‌باز"),
-                actions: [
-                  IconButton(
-                      onPressed: () => {}, icon: const Icon(Icons.search))
-                ],
-              ),
-              body: Padding(
+            appBar: AppBar(
+              title: const Text("متن‌باز"),
+              actions: [
+                IconButton(onPressed: () => {}, icon: const Icon(Icons.search))
+              ],
+            ),
+            body: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: NotificationListener(
-                    onNotification: (t) {
-                      if (t is ScrollEndNotification &&
-                          _scrollController.position.pixels >=
-                              _scrollController.position.maxScrollExtent *
-                                  0.7 &&
-                          result.isNotLoading) {
-                        fetchMore!(FetchMoreOptions(
-                            updateQuery: (previousResultData,
-                                    fetchMoreResultData) =>
-                                {
-                                  'repositories': {
-                                    'edges': [
-                                      ...previousResultData!['repositories']
-                                          ['edges'],
-                                      ...fetchMoreResultData!['repositories']
-                                          ['edges'],
-                                    ],
-                                    'pageInfo':
-                                        fetchMoreResultData['repositories']
-                                            ['pageInfo'],
-                                  }
-                                },
-                            variables: GetRepositoriesArguments(
-                                    first: 10,
-                                    after: result.data!['repositories']
-                                        ['pageInfo']['endCursor'])
-                                .toJson()));
-                      }
-                      return true;
-                    },
-                    child: Column(children: [
-                      Expanded(
+                child: Column(children: [
+                  Expanded(
+                      child: SmartRefresher(
+                          onRefresh: () async {
+                            await refetch!();
+                            _refreshController.refreshCompleted();
+                          },
+                          onLoading: () async {
+                            if (result.data != null) {
+                              await fetchMore!(FetchMoreOptions(
+                                  updateQuery: (previousResultData,
+                                          fetchMoreResultData) =>
+                                      {
+                                        'repositories': {
+                                          'edges': [
+                                            ...previousResultData![
+                                                'repositories']['edges'],
+                                            ...fetchMoreResultData![
+                                                'repositories']['edges'],
+                                          ],
+                                          'pageInfo': fetchMoreResultData[
+                                              'repositories']['pageInfo'],
+                                        }
+                                      },
+                                  variables: GetRepositoriesArguments(
+                                          first: _perPage,
+                                          after: result.data!['repositories']
+                                              ['pageInfo']['endCursor'])
+                                      .toJson()));
+                            }
+
+                            _refreshController.loadComplete();
+                          },
+                          enablePullDown: true,
+                          enablePullUp: true,
+                          controller: _refreshController,
+                          header: const WaterDropHeader(
+                            complete: Text("لیست تازه‌سازی شد."),
+                          ),
+                          footer: const ClassicFooter(
+                            loadingText: "در حال بارگیری...",
+                          ),
                           child: ListView(
-                        controller: _scrollController,
-                        children: [
-                          if (repos != null)
-                            ...repos
-                                .map((edge) =>
-                                    RepositoryPreview(repository: edge.node))
-                                .toList(),
-                          if (result.isLoading) ...[
-                            const Center(
-                                child: Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                                    child: CircularProgressIndicator()))
-                          ]
-                        ],
-                      )),
-                    ])),
-              ));
+                            children: [
+                              if (repos != null)
+                                ...repos
+                                    .map((edge) => RepositoryPreview(
+                                        repository: edge.node))
+                                    .toList(),
+                            ],
+                          ))),
+                ])),
+          );
         });
   }
 }

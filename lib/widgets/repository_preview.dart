@@ -46,7 +46,7 @@ class RepositoryPreview extends StatelessWidget {
                               repository.fullName,
                               textDirection: TextDirection.ltr,
                               style: const TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.bold),
+                                  fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                             Text(
                               repository.descriptionLimited,
