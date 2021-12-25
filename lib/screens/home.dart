@@ -69,16 +69,20 @@ class HomeScreen extends StatelessWidget {
                       Expanded(
                           child: ListView(
                         controller: _scrollController,
-                        children: repos != null
-                            ? repos
+                        children: [
+                          if (repos != null)
+                            ...repos
                                 .map((edge) =>
                                     RepositoryPreview(repository: edge.node))
-                                .toList()
-                            : [SizedBox()],
+                                .toList(),
+                          if (result.isLoading) ...[
+                            const Center(
+                                child: Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                                    child: CircularProgressIndicator()))
+                          ]
+                        ],
                       )),
-                      result.isLoading
-                          ? CircularProgressIndicator()
-                          : SizedBox()
                     ])),
               ));
         });

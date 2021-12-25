@@ -113,29 +113,27 @@ class RepositoryPreview extends StatelessWidget {
                           ],
                         ),
                         const Expanded(child: SizedBox()),
-                        repository.language != null
-                            ? Row(
-                                textDirection: TextDirection.ltr,
-                                children: [
-                                  Container(
-                                    width: 14,
-                                    height: 14,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Color.fromRGBO(
-                                            repository.language.color.rgba.red,
-                                            repository
-                                                .language.color.rgba.green,
-                                            repository.language.color.rgba.blue,
-                                            1)),
-                                  ),
-                                  const SizedBox(
-                                    width: 6,
-                                  ),
-                                  Text(repository.language.name)
-                                ],
-                              )
-                            : Row()
+                        if (repository.language != null)
+                          Row(
+                            textDirection: TextDirection.ltr,
+                            children: [
+                              Container(
+                                width: 14,
+                                height: 14,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color.fromRGBO(
+                                        repository.language.color.rgba.red,
+                                        repository.language.color.rgba.green,
+                                        repository.language.color.rgba.blue,
+                                        1)),
+                              ),
+                              const SizedBox(
+                                width: 6,
+                              ),
+                              Text(repository.language.name)
+                            ],
+                          )
                       ],
                     )
                   ],
