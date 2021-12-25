@@ -23,9 +23,9 @@ class HomeScreen extends StatelessWidget {
               first: _perPage,
             ).toJson()),
         builder: (result, {fetchMore, refetch}) {
-          final repos = result.data == null
-              ? null
-              : GetRepositories$Query.fromJson(result.data!).repositories.edges;
+          final repos = result.data != null
+              ? GetRepositories$Query.fromJson(result.data!).repositories.edges
+              : null;
 
           return Scaffold(
             appBar: AppBar(

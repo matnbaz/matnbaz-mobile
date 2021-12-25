@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:matnbaz_mobile/screens/home.dart';
-import 'package:matnbaz_mobile/screens/owner.dart';
 import 'package:matnbaz_mobile/screens/repository.dart';
 
 void main() async {
-  // We're using HiveStore for persistence,
-  // so we need to initialize Hive.
   await initHiveForFlutter();
 
   final HttpLink httpLink = HttpLink(
@@ -43,7 +40,7 @@ void main() async {
         locale: const Locale("fa", "IR"),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),
-          OwnerScreen.routeName: (context) => const OwnerScreen(),
+          // OwnerScreen.routeName: (context) => const OwnerScreen(),
           RepositoryScreen.routeName: (context) => const RepositoryScreen(),
         },
       )));
