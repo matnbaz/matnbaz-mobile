@@ -43,7 +43,7 @@ android {
 
     defaultConfig {
         applicationId "net.matnbaz.app"
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 19
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
