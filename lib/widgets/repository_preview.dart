@@ -48,15 +48,17 @@ class RepositoryPreview extends StatelessWidget {
                               style: const TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold),
                             ),
-                            Text(
-                              repository.descriptionLimited,
-                              maxLines: 4,
-                              overflow: TextOverflow.ellipsis,
-                              textDirection: repository.descriptionDirection ==
-                                      ScriptDirection.rtl
-                                  ? TextDirection.rtl
-                                  : TextDirection.ltr,
-                            ),
+                            if (repository.descriptionLimited != null)
+                              Text(
+                                repository.descriptionLimited,
+                                maxLines: 4,
+                                overflow: TextOverflow.ellipsis,
+                                textDirection:
+                                    repository.descriptionDirection ==
+                                            ScriptDirection.rtl
+                                        ? TextDirection.rtl
+                                        : TextDirection.ltr,
+                              ),
                           ],
                         ))
                       ],
