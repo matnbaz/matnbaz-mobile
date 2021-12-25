@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:matnbaz_mobile/graphql/gql_api.graphql.dart';
 import 'package:matnbaz_mobile/icons/matnbaz_custom_icons.dart';
@@ -210,7 +211,17 @@ class RepositoryScreen extends StatelessWidget {
                                   ],
                                 ),
                               ],
-                            )
+                            ),
+                            const SizedBox(
+                              height: 42,
+                            ),
+                            if (repository.readmeHtml != null)
+                              Html(
+                                data: repository.readmeHtml,
+                                style: {
+                                  'pre': Style(direction: TextDirection.ltr),
+                                },
+                              ),
                           ],
                         ],
                       )),
