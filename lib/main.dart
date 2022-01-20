@@ -21,7 +21,8 @@ void main() async {
     ),
   );
 
-  runApp(GraphQLProvider(
+  runApp(
+    GraphQLProvider(
       client: client,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -44,5 +45,7 @@ void main() async {
           // OwnerScreen.routeName: (context) => const OwnerScreen(),
           RepositoryScreen.routeName: (context) => const RepositoryScreen(),
         },
-      )));
+      ),
+    ),
+  );
 }
