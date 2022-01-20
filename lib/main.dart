@@ -24,6 +24,7 @@ void main() async {
   runApp(GraphQLProvider(
       client: client,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Matnbaz',
         localizationsDelegates: const [
           GlobalCupertinoLocalizations.delegate,
