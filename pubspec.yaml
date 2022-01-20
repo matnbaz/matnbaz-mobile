@@ -53,19 +53,19 @@ flutter:
   fonts:
     - family: Vazir
       fonts:
-        - asset: fonts/Vazir-Black.ttf
+        - asset: assets/fonts/Vazir-Black.ttf
           weight: 900
-        - asset: fonts/Vazir-Bold.ttf
+        - asset: assets/fonts/Vazir-Bold.ttf
           weight: 700
-        - asset: fonts/Vazir-Medium.ttf
+        - asset: assets/fonts/Vazir-Medium.ttf
           weight: 500
-        - asset: fonts/Vazir-Regular.ttf
+        - asset: assets/fonts/Vazir-Regular.ttf
           weight: 400
-        - asset: fonts/Vazir-Light.ttf
+        - asset: assets/fonts/Vazir-Light.ttf
           weight: 300
-        - asset: fonts/Vazir-Thin.ttf
+        - asset: assets/fonts/Vazir-Thin.ttf
           weight: 100
     - family:  MatnbazCustomIcons
       fonts:
-      - asset: fonts/MatnbazCustomIcons.ttf
+      - asset: assets/fonts/MatnbazCustomIcons.ttf
 
