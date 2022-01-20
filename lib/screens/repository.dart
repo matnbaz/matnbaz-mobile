@@ -3,6 +3,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:matnbaz_mobile/graphql/gql_api.graphql.dart';
 import 'package:matnbaz_mobile/icons/matnbaz_custom_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RepositoryScreenArguments {
   final String repo;
@@ -56,7 +57,7 @@ class RepositoryScreen extends StatelessWidget {
           appBar: AppBar(
             elevation: 0,
             title: Text(
-              result.data == null && result.isNotLoading ? "پیدا نشد" : "",
+              result.data == null && result.isNotLoading ? "پیدا نشد" : repository!.fullName,
             ),
           ),
           body: Padding(
@@ -73,18 +74,21 @@ class RepositoryScreen extends StatelessWidget {
                           ),
                           radius: 64,
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        const SizedBox(height: 20),
                         Center(
                           child: Column(
                             children: [
-                              Text(
-                                repository.fullName,
-                                textDirection: TextDirection.ltr,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
+                              TextButton(
+                                onPressed: () async {
+                                  await launch('https://github.com/${repository.fullName}');
+                                },
+                                child: Text(
+                                  repository.fullName,
+                                  textDirection: TextDirection.ltr,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                               if (repository.descriptionLimited != null) ...[
