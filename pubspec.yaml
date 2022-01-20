@@ -21,6 +21,7 @@ dependencies:
   flutter_html: ^2.2.1
 
   cupertino_icons: ^1.0.2
+  url_launcher: ^6.0.18
 
 # Temporary:
 dependency_overrides:
