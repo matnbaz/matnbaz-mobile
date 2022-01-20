@@ -21,9 +21,11 @@ void main() async {
     ),
   );
 
-  runApp(GraphQLProvider(
+  runApp(
+    GraphQLProvider(
       client: client,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Matnbaz',
         localizationsDelegates: const [
           GlobalCupertinoLocalizations.delegate,
@@ -43,5 +45,7 @@ void main() async {
           // OwnerScreen.routeName: (context) => const OwnerScreen(),
           RepositoryScreen.routeName: (context) => const RepositoryScreen(),
         },
-      )));
+      ),
+    ),
+  );
 }
